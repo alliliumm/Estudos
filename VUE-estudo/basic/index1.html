@@ -5,28 +5,256 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VueJS - Guia Completo</title>
-    <script  src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script> <!--link vue-->
 </head>
 <body>
-    <div id="app">
+
+<!-- ||||||||||||Seção 1 Primeria aplicação||||||||||||||||||| -->
+
+    <h2>1ª instância</h2>
+    <div id="app1">
         <p>{{ mensagem }}</p><!--interpolação de strings vue-->
         <p>Meu nome é: {{ nome }}</p>
         <input v-on:input="mudarnome"> <!--Ouvir eventos nativos do html - quando o usuario digitar algo-->
     </div>
 
+    <script  src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script> <!--link vue-->
     <script type="text/javascript">
+        //1ª instância
         new Vue({
-	        el:"#app",
-            data:{
-    	        mensagem: 'Olá VueJS!',
-                nome: ""
-            },
-            methods:{
-	            mudarnome:function(event){
-    	            this.nome = event.target.value; //aponta para o valor do input
+                //instância da primeira aplicação
+                el:"#app1",
+                data:{
+                    mensagem: 'Olá VueJS!',
+                    nome: ""
+                },
+                methods:{
+                    mudarnome: function(event){
+                        this.nome = event.target.value; //aponta para o valor do input
+                    }
                 }
-            }
-        });//Objeto de configurações do vue
+            });//Objeto de configurações do vue
     </script>
+
+    <h2>2ª instância</h2>
+    <div id="app2">
+        <p>Curso de {{ curso }} {{ instrutor() }}</p> <!-- Data Binding ou ligação de dados por interpolação(de valor) -->
+    </div>
+
+    
+    <script type="text/javascript">
+        //2ª instância
+            new Vue({
+                //instância para mostrar interpolação
+                //copia o codigo html escrito pelo autor, cria uma outra caixa e faz o 
+                //processo interno através de outro código baseado ao original, omitido
+                //o codigo sem ser o original criando o template vue
+    
+                el: '#app2', // Propriedade se conectando com o seletor css
+                data: { // Propriedade de dados
+                    curso: "VueJS"
+                },
+                methods:{ // Propriedades de métodos para ser exibido o resultado
+                    instrutor: function(){
+                        return 'Alessandra';//algo a ser exibido no template
+                    }
+                }
+                });
+    </script>
+
+<!-- ||||||||||||Seção 2 Dominando Princípios||||||||||||||||||| -->
+
+    <h2>3ª instância</h2>
+    <div id="app3">
+        <p>Curso de {{ curso }} {{ nomeDoInstrutor() }}</p>
+    </div>
+
+    <script type="text/javascript">
+        //3ª instância
+            new Vue({
+                //instância para acessar dados da instância Vue internamente
+                el: '#app3', // Propriedade se conectando com o seletor css
+                data: { // Propriedade de dados
+                    curso: "VueJS",
+                    instrutor: 'Alessandra'
+                },
+                methods:{ // O Vue faz o proxy de todos os objetos data, methods para que possam ser acessíveis diretamente través do this
+                    //acessando dados na instância internamente
+                    nomeDoInstrutor: function(){
+                        return this.instrutor; // 
+                    }
+                }
+                });
+    </script>
+
+    <h2>4ª instância</h2>
+    <div id="app4">
+        <p>Curso de {{ curso }}</p>
+        <a v-bind:href="docs">VueJs</a> <!--atributo href--> <!-- Data Binding ou ligação de dados (de atributo) -->
+        <!--A diretiva V-BIND fala pro Vue js começar a moitorar o atributo que foi dado
+        como parâmetro, realizando a ligação de dados, sem a interpolação-->
+    </div>
+
+    <script type="text/javascript">
+        //4ª instância
+                new Vue({
+                //instância para exibir o link
+                el: '#app4',
+                data: {
+                    curso: "VueJS",
+                    docs: 'https://vuejs.org'
+                },
+            });
+    </script>
+
+    <h2>5ª instância</h2>
+    <div id="app5">
+        <!--A diretiva é um atributo especial identificado com 'V-' seguido com o nome da diretiva -->
+        <p>Instrutor: <span v-text="instrutor"></span></p> <!-- Diretiva text -->
+        <p>Instrutor: {{ instrutor }}</p>
+    </div>
+
+    <script type="text/javascript">
+        //5ª instância
+            new Vue({
+                //instância para falar de diretivas vue
+                el: '#app5',
+                data: {
+                    instrutor: 'alessandra'
+                },
+            });
+    </script>
+
+    <h2>6ª instância</h2>
+    <div id="app6">
+        <p v-once>Nome inteiro: {{ nome }}</p> 
+        <!-- Serão renderizados uma vez utilizando a diretiva v-once, sendo considerado um conteúdo estático
+        desabilitar novas renderizações -->
+        <p>Nome: {{ getNome() }}</p>
+    </div>
+
+    <script type="text/javascript">
+        //6ª instância
+            new Vue({
+                //instância para visualizar o nome renderizado uma vez
+                el:'#app6',
+                data: {
+                    nome: 'alessandra'
+                },
+                methods:{
+                    getNome: function(){
+                        this.nome = 'ale';
+                        return this.nome;
+                    }
+                }
+            });
+    </script>
+
+    <h2>7ª instância</h2>
+    <div id="app7">
+        <p>{{ curso }}</p>
+        <p v-html="curso"></p> 
+        <!-- Diretiva para renderizar o html do atributo, tenha cuidado com a utilização CROSS-SItE-Scripting-->
+    </div>
+
+    <script type="text/javascript">
+        //7ª instância
+            new Vue({
+                //instância para mostrar em html
+                el: '#app7',
+                data: {
+                    curso: 'Curso de <span style="color: red">VueJs</span>'
+                }
+            });
+    </script>
+
+    <h2>8ª instância</h2>
+    <div id="app8">
+        <button v-on:click="incrementar">Clicar</button>
+        <!-- Ao contrário de V-bind, ele pega algo do template e leva para instância vue -->
+        <p>Botão clicado {{ cliques }} vezes</p>
+        <p v-on:mousemove="atualizarCoordenadas">Coordenadas x: {{ x }} e y: {{ y }}</p>
+    </div>
+
+    <script type="text/javascript">
+        //8ª instância
+            new Vue({
+                //instância para visualizar a posição do mouse
+                el:"#app8",
+                data: { 
+                    cliques: 0,
+                    x: 0,
+                    y: 0
+                },
+                methods: {
+                    incrementar: function(event){
+                        console.log(event);
+                        this.cliques++;
+                    },
+                    atualizarCoordenadas: function(event){
+                        this.x = event.clientX;
+                        this.y = event.clientY;
+                    }
+                }
+            });
+    </script>
+
+    <h2>9ª instância</h2>
+    <div id="app9">
+        <input v-on:blur="exibirNome('Meu nome é: ', $event)"> <!-- Evento de Blur: tirar foco do input -->
+        <p>{{ nome }}</p>
+    </div>
+
+    <script type="text/javascript">
+    //9ª instância
+        new Vue({
+            //instância para passar os próprios argumentos junto com o evento
+                el:"#app9",
+                data: {
+                    nome: ""
+                },
+                methods: {
+                    exibirNome: function(texto, event){
+                        this.nome = texto + event.target.value;
+                    }
+                }
+            });
+    </script>
+
+    <h2>10ª instância</h2>
+    <div id="app10">
+        <p v-on:click="onClick('p', $event)">
+            Curso de VueJS
+            <button v-on:click.stop="onClick('button', $event)">Clique</button> 
+            <!--click.stop para parar a propagação do evento pela árvore DOM-->
+            <!-- Indicando qual elemento está clicando junto com a variável que o vue gerencia com o evento nativo do javascript-->
+        </p>
+        <form>
+            <input type="text">
+            <button type="submit" v-on:click="onSubmit">Enviar sem modificador</button> <!--Não consegue manter o que foi realizado-->
+            <button type="submit" v-on:click.prevent="onSubmit">Enviar com modificador</button> <!--Consegue manter através do modificador prevent-->
+            <!--pode colocar o prevent.stop, porém a ordem conta-->
+        </form>
+    </div>
+
+    <script type="text/javascript">
+    //10ª instância
+        new Vue({
+            //instância para utilizar modificadores de eventos
+                el:"#app10",
+                methods: {
+                    onClick: function(elementoAlvo, event){
+                        /*Esse evento de click propaga pro objeto DOM pai, como filho para Pai, 
+                        por isso que repete o objeto pai ao clicar no botão, visualizado no console.*/
+                        //event.stopPropagation();
+                        //StopProgration um forma de para parar essa propagação
+                        console.log(event.type, ':' ,elementoAlvo)
+                    },
+                    onSubmit: function(event){
+                        console.log('Formulário Enviado');
+                    }
+                }
+            });
+</script>
+
 </body>
 </html>
