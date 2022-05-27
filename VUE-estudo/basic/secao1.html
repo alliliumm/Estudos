@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seção 1</title>
+</head>
+<body>
+
+<!-- ||||||||||||Seção 1 Primeria aplicação||||||||||||||||||| -->
+    <h1>Seção 1</h1>
+
+    <h2>1ª instância</h2>
+    <div id="app1">
+        <p>{{ mensagem }}</p><!--interpolação de strings vue-->
+        <p>Meu nome é: {{ nome }}</p>
+        <input v-on:input="mudarnome"> <!--Ouvir eventos nativos do html - quando o usuario digitar algo-->
+    </div>
+
+    <script  src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script> <!--link vue-->
+    <script type="text/javascript">
+        //1ª instância
+        new Vue({
+                //instância da primeira aplicação
+                el:"#app1",
+                data:{
+                    mensagem: 'Olá VueJS!',
+                    nome: ""
+                },
+                methods:{
+                    mudarnome: function(event){
+                        this.nome = event.target.value; //aponta para o valor do input
+                    }
+                }
+            });//Objeto de configurações do vue
+    </script>
+
+    <h2>2ª instância</h2>
+    <div id="app2">
+        <p>Curso de {{ curso }} {{ instrutor() }}</p> <!-- Data Binding ou ligação de dados por interpolação(de valor) -->
+    </div>
+
+    
+    <script type="text/javascript">
+        //2ª instância
+            new Vue({
+                //instância para mostrar interpolação
+                //copia o codigo html escrito pelo autor, cria uma outra caixa e faz o 
+                //processo interno através de outro código baseado ao original, omitido
+                //o codigo sem ser o original criando o template vue
+    
+                el: '#app2', // Propriedade se conectando com o seletor css
+                data: { // Propriedade de dados
+                    curso: "VueJS"
+                },
+                methods:{ // Propriedades de métodos para ser exibido o resultado
+                    instrutor: function(){
+                        return 'Alessandra';//algo a ser exibido no template
+                    }
+                }
+                });
+    </script>
+
+
+
+
+</body>
+</html>

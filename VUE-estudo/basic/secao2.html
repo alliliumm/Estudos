@@ -4,75 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VueJS - Guia Completo</title>
+    <title>Seção 2</title>
 </head>
 <body>
 
-<!-- ||||||||||||Seção 1 Primeria aplicação||||||||||||||||||| -->
+    <!-- ||||||||||||Seção 2 Dominando Princípios||||||||||||||||||| -->
+    <h1>Seção 2</h1>
 
     <h2>1ª instância</h2>
     <div id="app1">
-        <p>{{ mensagem }}</p><!--interpolação de strings vue-->
-        <p>Meu nome é: {{ nome }}</p>
-        <input v-on:input="mudarnome"> <!--Ouvir eventos nativos do html - quando o usuario digitar algo-->
+        <p>Curso de {{ curso }} {{ nomeDoInstrutor() }}</p>
     </div>
 
     <script  src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script> <!--link vue-->
     <script type="text/javascript">
         //1ª instância
-        new Vue({
-                //instância da primeira aplicação
-                el:"#app1",
-                data:{
-                    mensagem: 'Olá VueJS!',
-                    nome: ""
-                },
-                methods:{
-                    mudarnome: function(event){
-                        this.nome = event.target.value; //aponta para o valor do input
-                    }
-                }
-            });//Objeto de configurações do vue
-    </script>
-
-    <h2>2ª instância</h2>
-    <div id="app2">
-        <p>Curso de {{ curso }} {{ instrutor() }}</p> <!-- Data Binding ou ligação de dados por interpolação(de valor) -->
-    </div>
-
-    
-    <script type="text/javascript">
-        //2ª instância
-            new Vue({
-                //instância para mostrar interpolação
-                //copia o codigo html escrito pelo autor, cria uma outra caixa e faz o 
-                //processo interno através de outro código baseado ao original, omitido
-                //o codigo sem ser o original criando o template vue
-    
-                el: '#app2', // Propriedade se conectando com o seletor css
-                data: { // Propriedade de dados
-                    curso: "VueJS"
-                },
-                methods:{ // Propriedades de métodos para ser exibido o resultado
-                    instrutor: function(){
-                        return 'Alessandra';//algo a ser exibido no template
-                    }
-                }
-                });
-    </script>
-
-<!-- ||||||||||||Seção 2 Dominando Princípios||||||||||||||||||| -->
-
-    <h2>3ª instância</h2>
-    <div id="app3">
-        <p>Curso de {{ curso }} {{ nomeDoInstrutor() }}</p>
-    </div>
-
-    <script type="text/javascript">
-        //3ª instância
             new Vue({
                 //instância para acessar dados da instância Vue internamente
-                el: '#app3', // Propriedade se conectando com o seletor css
+                el: '#app1', // Propriedade se conectando com o seletor css
                 data: { // Propriedade de dados
                     curso: "VueJS",
                     instrutor: 'Alessandra'
@@ -86,8 +35,8 @@
                 });
     </script>
 
-    <h2>4ª instância</h2>
-    <div id="app4">
+    <h2>2ª instância</h2>
+    <div id="app2">
         <p>Curso de {{ curso }}</p>
         <a v-bind:href="docs">VueJs</a> <!--atributo href--> <!-- Data Binding ou ligação de dados (de atributo) -->
         <!--A diretiva V-BIND fala pro Vue js começar a moitorar o atributo que foi dado
@@ -95,10 +44,10 @@
     </div>
 
     <script type="text/javascript">
-        //4ª instância
+        //2ª instância
                 new Vue({
                 //instância para exibir o link
-                el: '#app4',
+                el: '#app2',
                 data: {
                     curso: "VueJS",
                     docs: 'https://vuejs.org'
@@ -106,26 +55,26 @@
             });
     </script>
 
-    <h2>5ª instância</h2>
-    <div id="app5">
+    <h2>3ª instância</h2>
+    <div id="app3">
         <!--A diretiva é um atributo especial identificado com 'V-' seguido com o nome da diretiva -->
         <p>Instrutor: <span v-text="instrutor"></span></p> <!-- Diretiva text -->
         <p>Instrutor: {{ instrutor }}</p>
     </div>
 
     <script type="text/javascript">
-        //5ª instância
+        //3ª instância
             new Vue({
                 //instância para falar de diretivas vue
-                el: '#app5',
+                el: '#app3',
                 data: {
                     instrutor: 'alessandra'
                 },
             });
     </script>
 
-    <h2>6ª instância</h2>
-    <div id="app6">
+    <h2>4ª instância</h2>
+    <div id="app4">
         <p v-once>Nome inteiro: {{ nome }}</p> 
         <!-- Serão renderizados uma vez utilizando a diretiva v-once, sendo considerado um conteúdo estático
         desabilitar novas renderizações -->
@@ -133,10 +82,10 @@
     </div>
 
     <script type="text/javascript">
-        //6ª instância
+        //4ª instância
             new Vue({
                 //instância para visualizar o nome renderizado uma vez
-                el:'#app6',
+                el:'#app4',
                 data: {
                     nome: 'alessandra'
                 },
@@ -149,26 +98,26 @@
             });
     </script>
 
-    <h2>7ª instância</h2>
-    <div id="app7">
+    <h2>5ª instância</h2>
+    <div id="app5">
         <p>{{ curso }}</p>
         <p v-html="curso"></p> 
         <!-- Diretiva para renderizar o html do atributo, tenha cuidado com a utilização CROSS-SItE-Scripting-->
     </div>
 
     <script type="text/javascript">
-        //7ª instância
+        //5ª instância
             new Vue({
                 //instância para mostrar em html
-                el: '#app7',
+                el: '#app5',
                 data: {
                     curso: 'Curso de <span style="color: red">VueJs</span>'
                 }
             });
     </script>
 
-    <h2>8ª instância</h2>
-    <div id="app8">
+    <h2>6ª instância</h2>
+    <div id="app6">
         <button v-on:click="incrementar">Clicar</button>
         <!-- Ao contrário de V-bind, ele pega algo do template e leva para instância vue -->
         <p>Botão clicado {{ cliques }} vezes</p>
@@ -176,10 +125,10 @@
     </div>
 
     <script type="text/javascript">
-        //8ª instância
+        //6ª instância
             new Vue({
                 //instância para visualizar a posição do mouse
-                el:"#app8",
+                el:"#app6",
                 data: { 
                     cliques: 0,
                     x: 0,
@@ -198,17 +147,17 @@
             });
     </script>
 
-    <h2>9ª instância</h2>
-    <div id="app9">
+    <h2>7ª instância</h2>
+    <div id="app7">
         <input v-on:blur="exibirNome('Meu nome é: ', $event)"> <!-- Evento de Blur: tirar foco do input -->
         <p>{{ nome }}</p>
     </div>
 
     <script type="text/javascript">
-    //9ª instância
+    //7ª instância
         new Vue({
             //instância para passar os próprios argumentos junto com o evento
-                el:"#app9",
+                el:"#app7",
                 data: {
                     nome: ""
                 },
@@ -220,8 +169,8 @@
             });
     </script>
 
-    <h2>10ª instância</h2>
-    <div id="app10">
+    <h2>8ª instância</h2>
+    <div id="app8">
         <p v-on:click="onClick('p', $event)">
             Curso de VueJS
             <button v-on:click.stop="onClick('button', $event)">Clique</button> 
@@ -237,10 +186,10 @@
     </div>
 
     <script type="text/javascript">
-    //10ª instância
+    //8ª instância
         new Vue({
             //instância para utilizar modificadores de eventos
-                el:"#app10",
+                el:"#app8",
                 methods: {
                     onClick: function(elementoAlvo, event){
                         /*Esse evento de click propaga pro objeto DOM pai, como filho para Pai, 
@@ -254,7 +203,92 @@
                     }
                 }
             });
-</script>
+    </script>
+
+    <h2>9ª instância</h2>
+    <div id="app9">
+        <input v-on:keyup="onKey" placeholder="Qualquer tecla">
+        <!-- Evento que captura o pressionar e o soltar uma tecla para executar uma tecla -->
+        <input v-on:keyup.enter="onKey" placeholder="Tecla Enter">
+        <!-- Com modificador de tecla para especificar sobre algumas teclas -->
+        <br>
+        <input v-on:keyup.enter.esc="onKey" placeholder="Tecla Enter ou Escape">
+        <!-- Consultar a documentação do VueJS sobre eventos -->
+        <input v-on:keyup.a="onKey" placeholder="Tecla a">
+        <br>
+        <input v-on:keyup.arrow-up="onKey" placeholder="Tecla para cima">
+        <!-- ArrowUp > para kebab-case = arrow-up, pode consultar o KeyboardEvent.Key value da documentação mozilla -->
+        <input v-on:keyup.ctrl.enter="onKey" placeholder="Teclas CRTL + Enter">
+        <input v-on:keyup.ctrl.enter.exact="onKey" placeholder="Teclas CRTL + Enter(exact)">
+        <!-- Exact > para que realmente sejam executadas as teclas,
+        o exemplo do ctrl e enter, sem o exact, executa o Enter mais o SHIFT e mais o Ctrl -->
+    </div>
+
+    <script type="text/javascript">
+    //10ª instância
+        new Vue({
+            //instância para trabalhar com eventos do teclado e modificadores de tecla
+                el:"#app9",
+                methods: {
+                    onKey:function(event){//Capture o evento 
+                        console.log('Tecla ' + event.key + ' pressionada')
+                    }
+                }
+                
+            });
+    </script>
+
+    <h2>10ª instância</h2>
+    <div id="app10">
+        <button v-on:click.left="onClick">Botão Esquerdo</button>
+        <button v-on:click.middle="onClick">Botão Meio</button>
+        <button v-on:click.right="onClick">Botão Direito</button>
+        <button v-on:click.right.prevent="onClick">Botão Direito (sem menu de contexto)</button>
+
+    </div>
+
+    <script type="text/javascript">
+    //10ª instância
+        new Vue({
+            //instância para trabalhar com eventos do mouse e modificadores de mouse
+                el:"#app10",
+                methods: {
+                    onClick: function(){
+                        console.log('Botão ' + event.button + ' pressionado!');
+                    }
+                }
+            });
+    </script>
+
+    <h2>11ª instância</h2>
+    <div id="app11">
+        <a v-bind:href="docs">VueJS</a>
+        <br>
+        <button v-on:click="onClick">Clique</button>
+
+        <hr>
+
+        <a :href="docs">VueJS com atalho</a>
+        <br>
+        <button @click="onClick">Clique com atalho</button>
+
+    </div>
+
+    <script type="text/javascript">
+    //11ª instância
+        new Vue({
+            //instância para atalhos para property e event binding
+                el:"#app11",
+                data: {
+                    docs: 'https://vuejs.org'
+                },
+                methods: {
+                    onClick: function(event){
+                        console.log('Botão ', event.type);
+                    }
+                }
+            });
+    </script>
 
 </body>
 </html>
