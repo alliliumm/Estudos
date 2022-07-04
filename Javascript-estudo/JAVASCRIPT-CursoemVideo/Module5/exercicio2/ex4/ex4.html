@@ -4,20 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hora do dia</title>
+    <title>Vamos contar</title>
     <link rel="stylesheet" href="ex4.css">
 </head>
-<body onload="carregar()"> <!--Quando carregar-->
+<body> <!--Quando carregar-->
     <header>
-        <h1>Hora do Dia</h1>
+        <h1>Vamos contar</h1>
     </header>
     <section>
-        <div id="msg">
-            Mensagem
+
+        <div class="numero">
+            <label for="numero">Número: </label>
+            <input id="numero" type="number">
+            <button onclick="contar()">Gerar Tabela</button>
         </div>
-        <div id="foto">
-            <img id="img" src="" alt="">
+
+        <div class="calculo">
+            <label for="calculo">Fim: </label><br>
+            <select name="calculo" id="calculo"></select>
         </div>
+
     </section>
     <footer>
         <p>&copy; Lilian's</p>

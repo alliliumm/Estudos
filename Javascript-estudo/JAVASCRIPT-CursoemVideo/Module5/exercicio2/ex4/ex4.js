@@ -1,28 +1,19 @@
-function carregar(){
-    var msg = window.document.getElementById('msg')
-    var img = window.document.getElementById('img')
-    var data = new Date()
-    //var hora = data.getHours()
-    var hora = 15
-    msg.innerHTML = `Agora são ${hora} horas.`
+function contar(){
+    let numero = document.querySelector('input#numero')
+    let calculo = document.querySelector('p#calculo')
 
-    if(hora >= 0 && hora < 12){
-        //Bom dia
-        img.src = 'img/manha.png'
-        img.alt = 'Foto da Manhã'
+    numeronum = Number(numero.value);
 
-        document.body.style.background = 'rgba(230, 147, 41, 0.65)'
-    }else if(hora >=12 && hora < 18){
-        //Boa Tarde
-        img.src = 'img/tarde.png'
-        img.alt = 'Foto da Tarde'
-
-        document.body.style.background = 'rgb(166, 108, 81)'
+    if(numero.value.length == 0){
+        alert('Impossível Contar')
     }else{
-        //Boa noite
-        img.src = 'img/noite.png'
-        img.alt = 'Foto da Noite'
+        for(var i=0;i<=10;i++){
+            res = numeronum * i
+            calculo.innerHTML += `${numeronum} x ${i} = ${res} <br>`
+        }
 
-        document.body.style.background = 'rgb(49, 73, 121)'
     }
+
+
+
 }
