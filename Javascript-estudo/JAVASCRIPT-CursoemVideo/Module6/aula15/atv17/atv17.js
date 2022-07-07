@@ -2,7 +2,8 @@
 
 let num = [18,45,3,9,55]
 num.sort((a,b) => a - b) //Sortear todos os elementos e colocar em ordem crescente 
-num.push(7) //Criar mais um elemento na array por último
+num.push(7)
+num.push(4) //Criar mais um elemento na array por último
 
 console.log(num)
 console.log(`Nosso vetor é o ${num} e o comprimento é ${num.length}`) //Contar todos os elementos de uma array
@@ -27,9 +28,9 @@ num[3] = 6 //Escolher a posição para atribuir variável
 
 
 let pos = num.indexOf(3)
-console.log(`o valor 9 está na posição ${pos}`) // Valor encontrado e é encontrado o seu índice
+console.log(`o valor 3 está na posição ${pos}`) // Valor encontrado e é encontrado o seu índice
 let pos1 = num.indexOf(8)
-console.log(`o valor 9 está na posição ${pos1}`) // Valor não encontrado e nao é encontrado o seu índice
+console.log(`o valor 8 está na posição ${pos1}`) // Valor não encontrado e nao é encontrado o seu índice
 
 if (pos == -1){
     console.log("O valor não foi encontrado")
