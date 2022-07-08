@@ -43,3 +43,90 @@ if (pos1 == -1){
 }else{
     console.log(`O valor foi encontrado e se encontra na posição ${pos}`)
 }
+
+
+
+
+//Soma de arrays:
+
+var arr = [1,2,3,4,5,6,7,8,9,10];
+var soma = 0;
+for(var i = 0; i < arr.length; i++) {
+    soma += arr[i];
+}
+console.log(soma);
+
+
+//Menorvalor de arrays
+
+    //legal
+
+    let arrmin2 = [1,2,3,4,5,6,7,8,9,10]
+    let minmin2 = arr.map(Number).reduce(function(a,b){
+        return Math.min(a, b)
+    })
+
+    console.log(minmin2)
+
+    //complicado
+    const valuesmin2 = [1,5,3,10,4,6];
+    const minValue2 = valuesmin2.reduce(function(prev, current){
+        return prev < current ? prev : current;
+    });
+    console.log(minValue2)
+
+
+//Maiorvalor de arrays
+
+    //legal
+
+    let arrmai2 = [1,2,3,4,5,6,7,8,9,10]
+    let maimai2 = arr.map(Number).reduce(function(a,b){
+        return Math.max(a, b)
+    })
+
+    console.log(maimai2)
+
+    //complicado
+    const valuesmax2 = [1,5,3,10,4,6];
+    const maxValue2 = valuesmax2.reduce(function(prev, current){
+        return prev > current ? prev : current;
+    });
+    console.log(maxValue2)
+
+
+//Simples
+
+    let arr3 = [1,2,3,4,5,6,7,8,9,10]
+    let min3 = Math.min(...arr)
+    let max3 = Math.max(...arr)
+
+    console.log(min3)
+    console.log(max3)
+
+//Exemplo de array de objetos
+
+const valuesarray = [
+    {
+        'id':10,
+        'name': 'Cena',
+        'age':31
+    },
+    {
+        'id':5,
+        'name':'Will',
+        'age':38
+    }
+];
+
+const maxAge = valuesarray.reduce(function(prev, current){
+    return prev.age > current.age ? prev : current;
+});
+
+console.log(maxAge)
+
+const minAge = valuesarray.reduce(function(prev, current){
+    return prev.age < current.age ? prev : current;
+});
+
+console.log(minAge)

@@ -23,7 +23,7 @@ footer{
     font-style: italic;
 }
 
-select{
+select#resposta{
     width: 300px;
 }
 
