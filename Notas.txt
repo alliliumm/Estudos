@@ -1,0 +1,4 @@
+Comandos:
+
+npm list -g --depth=0 -> Ver todos os pacotes instalados globalmente na máquina e versões
+pip list -> Pacotes instalados globalmente na máquina no ambiente python.
